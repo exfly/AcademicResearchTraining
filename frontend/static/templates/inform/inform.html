@@ -1,0 +1,37 @@
+{% extends "../base.html" %}
+
+{% block title %}Tornado.Index{% end %}
+
+{% block content %}
+<div class="content-container container index-html">
+  <div class="card notice-card custom-card" >
+            <div class="card-header">
+                <i class="fa fa-flag" aria-hidden="true"></i>通知
+            </div>
+            <div class="card-block">
+                <p>1. 目前社区上线测试, 欢迎大家提各种意见. </p>
+                <p>2. 社区已经开源, 传送门. <a target="_blank" class="important-font" href="https://github.com/jmpews/torweb"><i
+                        class="fa fa-github" aria-hidden="true"></i>torweb</a></p>
+                <!--{% if not current_user %}-->
+                <!--<p><a class="btn btn-outline-primary" href="/login" role="button">登陆</a></p>-->
+                <!--<div>没有账户? <a href="/register">点击注册</a></div>-->
+                <!--{% else %}-->
+                <!--{{current_user.username}}-->
+                <!--{% end %}-->
+            </div>
+        </div>
+    </div>
+</div>
+{% end %}
+
+{% block scripts %}
+<script src="/assets/js/parsley.min.js"></script>
+<script src="/assets/i18n/zh_cn.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        {#        monitor_system_status()#}
+        show_hide_cate_nav();
+    });
+
+</script>
+{% end %}

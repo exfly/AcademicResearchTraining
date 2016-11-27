@@ -1,0 +1,54 @@
+{% extends "../base.html" %}
+
+{% block title %}Tornado.Index{% end %}
+
+{% block content %}
+<div class="content-container container index-html">
+        <div class="card post-hot-card custom-card">
+            <div class="card-header">
+                <i class="fa fa-fire" aria-hidden="true"></i>Hot文章
+            </div>
+            <div class="card-block">
+                <ul class="">
+                    {% for post in hot_post_cache['reply'] %}
+                    <li><span class="">{{ post.reply_count }} ℃</span> <span class="important-divider">|</span> <a
+                            href="/post/{{ post.id }}">{{ post.title }}</a></li>
+                    {% end %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card system-status-card custom-card" style="display: none">
+            <div class="card-header">
+                <i class="fa fa-desktop" aria-hidden="true"></i>服务器状态
+            </div>
+            <div class="card-block">
+                <dl class="row">
+                    <dt class="col-xs-6">CPU使用率:</dt>
+                    <dd class="col-xs-6"><span class="cpu-per">{{ systatus[0] }}</span></dd>
+                    <dt class="col-xs-6">RAM使用率:</dt>
+                    <dd class="col-xs-6"><span class="ram-per">{{ systatus[1] }}</span></dd>
+                    <dt class="col-xs-6">连接数:</dt>
+                    <dd class="col-xs-6"><span class="net-conn">{{ systatus[2] }}</span></dd>
+                    <dt class="col-xs-6">系统启动时间:</dt>
+                    <dd class="col-xs-6"><span class="os-start">{{ systatus[3] }}</span></dd>
+
+                </dl>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% end %}
+
+{% block scripts %}
+<script src="/assets/js/parsley.min.js"></script>
+<script src="/assets/i18n/zh_cn.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        {#        monitor_system_status()#}
+        show_hide_cate_nav();
+    });
+
+</script>
+{% end %}
