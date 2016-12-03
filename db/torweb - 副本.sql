@@ -398,7 +398,7 @@ CREATE TABLE `postcategory` (
 
 LOCK TABLES `postcategory` WRITE;
 /*!40000 ALTER TABLE `postcategory` DISABLE KEYS */;
-INSERT INTO `postcategory` VALUES (1,'漏洞环境','vulenv'),(2,'安全工具','tools');
+INSERT INTO `postcategory` VALUES (1,'分类','vulenv');
 /*!40000 ALTER TABLE `postcategory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -459,7 +459,7 @@ CREATE TABLE `posttopic` (
 
 LOCK TABLES `posttopic` WRITE;
 /*!40000 ALTER TABLE `posttopic` DISABLE KEYS */;
-INSERT INTO `posttopic` VALUES (1,1,'web漏洞','web-vulenv',0),(2,1,'php漏洞','php-vulenv',0),(3,2,'kali','kali-tools',0),(4,NULL,'通知','notice',0),(5,NULL,'讨论','discussion',0);
+INSERT INTO `posttopic` VALUES (1,1,'爱学习','live-study',0),(2,1,'爱生活','live-live',0),(3,2,'爱管“闲事”','live-things',0);
 /*!40000 ALTER TABLE `posttopic` ENABLE KEYS */;
 UNLOCK TABLES;
 

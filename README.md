@@ -604,3 +604,12 @@ def login_required(method):
 参考链接:
 
 https://www.zhihu.com/question/20215561
+
+
+
+
+# 分类
+  * 分类
+    * 爱学习
+    * 爱生活
+    * 爱管“闲事”

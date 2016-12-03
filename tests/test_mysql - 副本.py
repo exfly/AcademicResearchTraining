@@ -55,13 +55,28 @@ def create_test_data(db_mysql):
         校园通知、讨论
     ''')
 
-    postcategory0 = PostCategory.create(name='分类', str='live')
-    posttopic0 = PostTopic.create(category=postcategory0, name='爱学习', str='live-study')
-    posttopic1 = PostTopic.create(category=postcategory0, name='爱生活', str='live-life')
-    posttopic2 = PostTopic.create(category=postcategory0, name='爱管“闲事”', str='live-thing')
+    postcategory0 = PostCategory.create(name='分类', str='study')
+    postcategory1 = PostCategory.create(name='专业', str='major')
+    postcategory2 = PostCategory.create(name='生活', str='live')
+    postcategory3 = PostCategory.create(name='爱好', str='hobby')
+
+    posttopic0 = PostTopic.create(category=postcategory0, name='学习资料', str='study-material')
+    posttopic1 = PostTopic.create(category=postcategory0, name='考研资料', str='study-advance-material')
+    posttopic2 = PostTopic.create(category=postcategory0, name='竞赛', str='study-competition')
+    posttopic3 = PostTopic.create(category=postcategory0, name='请教', str='study-advice')
+
+    posttopic4 = PostTopic.create(category=postcategory1, name='计算机', str='major-computer')
+
+    posttopic5 = PostTopic.create(category=postcategory2, name='电影资源', str='live-movie')
+    posttopic6 = PostTopic.create(category=postcategory2, name='共享账号', str='live-account')
+    posttopic7 = PostTopic.create(category=postcategory2, name='电脑故障', str='live-computer-repair')
+
+    posttopic8 = PostTopic.create(category=postcategory3, name='摄影', str='hobby-photography')
+    posttopic9 = PostTopic.create(category=postcategory3, name='健身', str='hobby-fitness')
 
     posttopic10 = PostTopic.create(name='通知', str='notice')
     posttopic11 = PostTopic.create(name='讨论', str='discussion')
+
 
     # ---------------- 测试新文章 --------------
     post = Post.create(
