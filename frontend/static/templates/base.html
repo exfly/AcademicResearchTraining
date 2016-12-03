@@ -15,6 +15,21 @@
 {#    <link id="theme" rel="stylesheet" type="text/css" href="/assets/css/index{{ theme }}.css"/>#}
 {#    {% else %}#}
     <link id="theme" rel="stylesheet" type="text/css" href="/assets/css/index.color4.css"/>
+    <style type="text/css">
+
+.content-container {
+	margin-top:5px;
+}
+
+.banner {
+	margin-bottom:10px;
+}
+
+.index-html .all-cate-card {
+		margin-left: 0 !important;
+}
+    </style>
+{#    /*http://blog.csdn.net/never_say_goodbye/article/details/8546889*/#}
 {#    {% end %}#}
 </head>
 <body>
@@ -39,7 +54,7 @@
                         <a href="/">首页 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="transition">
-                        <a href="/inform" target="_blank">inform</a>
+                        <a href="/inform" target="_blank">通知</a>
                     </li>
                     <li>
                         <!-- <a href="/blog"><i class="fa fa-cloud" aria-hidden="true"></i></a> -->
@@ -49,6 +64,7 @@
                         <a href="#"><i class="fa fa-envira" aria-hidden="true"></i></a>
                     </li>
                 </ul>
+
                 <div class="header-tip">
                     {% if not current_user %}
                     <!-- 未登录 -->
@@ -71,10 +87,12 @@
                             </ul>
                         </li>
                         <li><a href="/user/notification">消息</a></li>
-                        <li><a href="/post/add">新主题</a></li>
+                        <li><a href="/post/add">发布</a></li>
                     </ul>
                     {% end %}
                 </div>
+
+
             </div>
         </div>
     </div>
