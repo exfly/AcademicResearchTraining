@@ -10,6 +10,7 @@ from custor.utils import random_str, TimeUtil
 class USER_ROLE:
     NORMAL = 1
     ADMIN = 0
+    TEACHER = 7
 
 
 class User(BaseModel):
@@ -59,11 +60,15 @@ class User(BaseModel):
 
     # 创建新的用户
     @staticmethod
-    def new(username, password, email, nickname='', avatar=config.default_avatar):
+    def new(username, password, email, nickname='', avatar=config.default_avatar, level=USER_ROLE.NORMAL, isteacher=''):
         salt = random_str()
         password_md5 = md5(password.encode('utf-8')).hexdigest()
         password_final = md5((password_md5 + salt).encode('utf-8')).hexdigest()
-        level = USER_ROLE.NORMAL  # 首个用户赋予admin权限
+
+        #level = USER_ROLE.NORMAL  # 首个用户赋予admin权限
+        print(isteacher)
+        if isteacher == 'yes':
+            level = USER_ROLE.TEACHER
         the_time = int(time.time())
         u = User.create(username=username,
                         nickname=nickname,

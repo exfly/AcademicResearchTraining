@@ -31,6 +31,9 @@
                         <img class="captcha" src="/utils/captcha">
                         <input class="form-control" id="captcha" placeholder="请验证码" required>
                     </fieldset>
+                    <fieldset class="form-group">
+                        <input type="checkbox" id="isteacher" name="isteacher" value="yes">是否为老师
+                    </fieldset>
                     <button type="submit" class="btn btn-primary">注册</button>
                     </form>
                 </div>
@@ -46,6 +49,7 @@
     });
     $('form').on('submit', function (event) {
         event.preventDefault();
+        var isChecked = $("input:checkbox").is(":checked") ? "yes":"no";
          $.ajax({
             type: 'post',
             dataType: 'json',
@@ -54,6 +58,7 @@
                 'username': $('#username').val(),
                 'email': $('#email').val(),
                 'password': $('#password1').val(),
+                'isteacher': isChecked,
             },
             success: function(result, status) {
                 if(result.errorcode == 0) {
