@@ -461,7 +461,7 @@ CREATE TABLE `posttopic` (
 LOCK TABLES `posttopic` WRITE;
 /*!40000 ALTER TABLE `posttopic` DISABLE KEYS */;
 
-INSERT INTO `posttopic` VALUES (1,1,'爱学习','web-vulenv',0),(2,1,'爱生活','php-vulenv',0),(3,1,'爱管“闲事”','kali-tools',0),(4,NULL,'通知','notice',0),(5,NULL,'讨论','discussion',0);
+INSERT INTO `posttopic` VALUES (1,1,'爱学习','web-vulenv',0),(2,1,'爱生活','php-vulenv',0),(3,1,'爱管“闲事”','kali-tools',0),(4,NULL,'通知','notice',0),(5,NULL,'讨论','discussion',0),(6,1,'微服私访','access',0);
 /*!40000 ALTER TABLE `posttopic` ENABLE KEYS */;
 UNLOCK TABLES;
 

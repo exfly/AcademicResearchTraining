@@ -37,9 +37,23 @@
                                 <li>
                                     <h4><i class="fa fa-hashtag" aria-hidden="true"></i>{{ category.name }}</h4>
                                     <ul class="card-header-all-cate-topic cl">
-                                        {% for topic in topics %}
-                                        <li><a href="#blank" topic-id="{{ topic.str }}">{{ topic.name }}</a></li><br>
+{#                                        {% for topic in topics %}#}
+{#                                        <li><a href="#blank" topic-id="{{ topic.str }}">{{ topic.name }}</a></li><br>#}
+{#                                        {% end %}#}
+
+                                        {% if isteacher %}
+                                            {% for topic in topics %}
+                                                <li><a href="#blank" topic-id="{{ topic.str }}">{{ topic.name }}</a></li><br>
+                                            {% end %}
+                                        {% else %}
+                                            {% for topic in topics %}
+                                                {% if topic.str == 'access' %}
+                                                {% else %}
+                                                    <li><a href="#blank" topic-id="{{ topic.str }}">{{ topic.name }}</a></li><br>
+                                                {% end %}
+                                            {% end %}
                                         {% end %}
+
                                     </ul>
                                 </li>
 

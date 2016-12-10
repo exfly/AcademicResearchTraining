@@ -35,7 +35,7 @@ class PostAddHandler(BaseRequestHandler):
     def get(self, *args, **kwargs):
         isteacher =  self.get_secure_cookie('isteacher') == b'7'
         print(self.get_secure_cookie('isteacher'))
-        print(isteacher)
+        # print(isteacher)
         self.render('post/post_new.html',
                     topic_category_cache=topic_category_cache, isteacher=isteacher)
 
