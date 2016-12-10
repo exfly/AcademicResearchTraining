@@ -33,17 +33,19 @@ class PostDetailHandler(BaseRequestHandler):
 class PostAddHandler(BaseRequestHandler):
     @login_required
     def get(self, *args, **kwargs):
-        isteacher =  self.get_secure_cookie('isteacher') == b'7'
-        print(self.get_secure_cookie('isteacher'))
+        isteacher =  self.get_secure_cookie('isteacher') == b'7'    # 判断当前用户是否为教师
+        # print(self.get_secure_cookie('isteacher'))
         # print(isteacher)
+
+        # 下一句 根据是否教师，显示不同的分类
         self.render('post/post_new.html',
                     topic_category_cache=topic_category_cache, isteacher=isteacher)
 
     @login_required
     def post(self, *args, **kwargs):
-        post_data = get_cleaned_post_data(self, ['title', 'content', 'topic'])
+        post_data = get_cleaned_post_data(self, ['title', 'content', 'topic'])  # 获得数据，包括 title content topic
         try:
-            topic = PostTopic.get(PostTopic.str == post_data['topic'])
+            topic = PostTopic.get(PostTopic.str == post_data['topic'])  # 获得分类的id
         except PostTopic.DoesNotExist:
             self.write(json_result(1, '请选择正确主题'))
             return
@@ -55,7 +57,7 @@ class PostAddHandler(BaseRequestHandler):
         )
         # 添加通知, 通知给其他关注的用户
         Notification.new_post(post)
-        self.write(json_result(0, {'post_id': post.id}))
+        self.write(json_result(0, {'post_id': post.id}))    # 返回
 
 
 # 修改帖子
@@ -103,9 +105,9 @@ class PostModifyHandler(BaseRequestHandler):
 class PostReplyAddHandler(BaseRequestHandler):
     @login_required
     def post(self, *args, **kwargs):
-        post_data = get_cleaned_post_data(self, ['post', 'content'])
+        post_data = get_cleaned_post_data(self, ['post', 'content'])    # 提取用户提交的数据
         try:
-            post = Post.get(Post.id == post_data['post'], Post.is_delete == False)
+            post = Post.get(Post.id == post_data['post'], Post.is_delete == False)  # 获得帖子信息
         except PostTopic.DoesNotExist:
             self.write(json_result(1, '请选择正确post'))
             return
@@ -114,9 +116,9 @@ class PostReplyAddHandler(BaseRequestHandler):
             user=self.current_user,
             content=post_data['content'],
         )
-        post.update_latest_reply(postreply)
+        post.update_latest_reply(postreply) # 将回复信息存储入数据库
         Notification.new_reply(postreply, post)
-        self.write(json_result(0, {'post_id': post.id}))
+        self.write(json_result(0, {'post_id': post.id})) # 更新前端页面
 
 
 # 帖子相关操作, 类似API的方式, 需要有opt,data参数(统一格式)
