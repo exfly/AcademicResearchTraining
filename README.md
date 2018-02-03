@@ -1,10 +1,8 @@
-# jmp
+# AcademicResearchTraining
 
 ## 介绍
 
-基于tornado并且有很多trick用法的社区.
-
-#### Link: **[jmp](http://sxu.today)**
+基于tornado的校园问题反馈为主的校园社区.
 
 ### 设计到的功能和模块:
 
@@ -46,6 +44,7 @@
 def get(self, *args, **kwargs):
 	self.success()
 ```
+
 #### 1. tornado+greenlet+decorators
 
 ## 安装&使用
@@ -55,7 +54,7 @@ def get(self, *args, **kwargs):
 ```
 # py3环境
 source ~/virtualenv/python3.5.2/bin/active
-git pull https://github.com/jmpews/torweb.git
+git pull https://github.com/ExFly/AcademicResearchTraining.git
 # 依赖包
 pip install -r requirements.txt
 # 修改配置文件
@@ -186,8 +185,8 @@ def get_cleaned_query_data(handler, args, blank=False):
                 raise RequestMissArgumentError('[' + k + '] arg not found')
     return data
 ```
-### 2. 特殊缓存的实现
 
+### 2. 特殊缓存的实现
 在`/app/cache.py` 缓存一些需要**面向所有用户使用**的缓存，比如缓存文章分类、热门文章分类、系统状态。当修改或者有新加的文章则进行主动更新。
 
 ```
@@ -267,7 +266,6 @@ def exception_deal(exceptions):
 ```
 
 ### 4. 用于计算get, post处理消耗时间的装饰器
-
 ```
 def timeit(func):
     '''
@@ -283,6 +281,7 @@ def timeit(func):
         ColorPrint.print('> Profiler: '+func.__qualname__+'used: '+str((end - start)) + 'us')
     return wrapper
 ```
+
 ### 5. 无闪切换主题
 `db/mysql_model/user.py`
 
@@ -307,7 +306,6 @@ def get_theme_by_cookie_user(self, handler):
 ```
 
 ### 6. 验证码模块,以及验证码装饰器
-
 ```
 class CaptchaHandler(BaseRequestHandler):
     def get(self, *args, **kwargs):
@@ -337,6 +335,7 @@ def check_captcha(errorcode, result):
         return wrapper
     return wrap_func
 ```
+
 ## Features
 ### 1. 文件组织方面
 ```
@@ -345,8 +344,8 @@ def check_captcha(errorcode, result):
 │   │   ├── api.py
 │   │   └── urls.py
 ```
-
 方便前、后端开发
+
 ### 2. 多配置加载
 通过`load_config`在所有模块之前加载配置文件，支持参数和环境变量两种方式(感觉有点复杂再考虑下)
 
@@ -375,6 +374,7 @@ def load_config(c):
             config = development
     return config
 ```
+
 ### 3. 采用数据库连接池
 使用peewee作为连接驱动，需要做`request_hook`，在请求前申请数据库连接，请求完将连接放回连接池。
 
@@ -410,6 +410,7 @@ class BaseRequestHandler(RequestHandler):
             db_mysql.close()
         return super(BaseRequestHandler, self).on_finish()
 ```
+
 ### 4. 工具类
 #### logger
 ```
@@ -451,6 +452,7 @@ class Logger:
     def exc(self, message):
         self.logger.exception(message)
 ```
+
 #### 页数导航
 ```
 def get_page_nav(current_page, page_number_limit, page_limit):
@@ -477,6 +479,7 @@ def get_page_nav(current_page, page_number_limit, page_limit):
         pages['cp+2'][1] = current_page+2
     return pages
 ```
+
 #### 时间友好显示
 ```
 class TimeUtil:
@@ -534,6 +537,7 @@ class TimeUtil:
         else:
             return TimeUtil.datetime_format(time, "%Y-%m-%d")
 ```
+
 #### 控制台彩色打印
 ```
 class ColorPrint:
@@ -550,6 +554,7 @@ class ColorPrint:
     def print(arg):
         print(ColorPrint.OKGREEN + arg + ColorPrint.ENDC)
 ```
+
 #### Json格式化结果
 ```
 def json_result(error_code, data):
@@ -565,6 +570,7 @@ def json_result(error_code, data):
         result = {'errorcode': error_code, 'data': data}
     return json.dumps(result)
 ```
+
 #### login_required(from tornado)
 ```
 def login_required(method):
@@ -604,9 +610,6 @@ def login_required(method):
 参考链接:
 
 https://www.zhihu.com/question/20215561
-
-
-
 
 # 分类
   * 分类
